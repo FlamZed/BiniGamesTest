@@ -36,6 +36,14 @@ Bini Games Test
 
 ● Вилазять помилки шрифтів, але не так критично.
 
+# Промо
+
+![image](https://github.com/FlamZed/BiniGamesTest/assets/53183455/e7b3fcab-b055-41a8-883a-b25f9d209d5b)
+
+![image](https://github.com/FlamZed/BiniGamesTest/assets/53183455/f2ace1b0-f962-4165-9005-93ce46fb35bc)
+
+![image](https://github.com/FlamZed/BiniGamesTest/assets/53183455/ccc60ada-5747-4356-a9f3-cea6566f3335)
+
 # Посилання на додаток
 
 https://drive.google.com/file/d/1nULRA6Lzln1evV49BTViW_s-OpoMXnvO/view?usp=sharing
