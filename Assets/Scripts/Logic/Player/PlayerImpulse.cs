@@ -6,6 +6,9 @@ namespace Logic.Player
 {
     public class PlayerImpulse : MonoBehaviour
     {
+        [SerializeField] private int _force;
+        [SerializeField] private float _maxDirectionMagnitude;
+
         [Inject] private IInputService _inputService;
 
         private Rigidbody2D _rigidbody;
@@ -35,7 +38,9 @@ namespace Logic.Player
 
             direction.Normalize();
 
-            _rigidbody.AddForce(direction * 50, ForceMode2D.Impulse);
+            direction = Vector3.ClampMagnitude(direction, _maxDirectionMagnitude);
+
+            _rigidbody.AddForce(direction * _force, ForceMode2D.Impulse);
         }
     }
 }

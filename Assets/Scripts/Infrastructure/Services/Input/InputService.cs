@@ -21,10 +21,23 @@ namespace Infrastructure.Services.Input
 
         public void Update()
         {
+
+#if UNITY_EDITOR
             if (UnityEngine.Input.GetKeyDown(KeyCode.Mouse0))
                 OnTap?.Invoke();
             else if (UnityEngine.Input.GetKeyUp(KeyCode.Mouse0))
                 OnRelease?.Invoke();
+#else
+            if (UnityEngine.Input.touchCount > 0)
+	        {
+                var touch = UnityEngine.Input.GetTouch(0);
+
+                if (touch.phase == TouchPhase.Began)
+                    OnTap?.Invoke();
+                else if (touch.phase == TouchPhase.Ended)
+                    OnRelease?.Invoke();
+            }
+#endif
         }
 
         public void GetMousePosition(out Vector3 position) =>
