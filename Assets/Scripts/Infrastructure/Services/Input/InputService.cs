@@ -36,6 +36,8 @@ namespace Infrastructure.Services.Input
                     OnTap?.Invoke();
                 else if (touch.phase == TouchPhase.Ended)
                     OnRelease?.Invoke();
+                else if (touch.phase == TouchPhase.Canceled)
+                    OnRelease?.Invoke();
             }
 #endif
         }
