@@ -1,4 +1,4 @@
-﻿namespace Infrastructure.Services.Audio
+﻿namespace Infrastructure.Services.Audio.Type
 {
     public enum AudioClipShot
     {

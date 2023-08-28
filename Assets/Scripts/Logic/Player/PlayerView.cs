@@ -7,26 +7,20 @@ using Utility;
 namespace Logic.Player
 {
     [RequireComponent(typeof(SpriteRenderer))]
-    public class PlayerConfigSetter : MonoBehaviour
+    public class PlayerView : MonoBehaviour
     {
         [SerializeField] private SpriteRenderer _spriteRenderer;
         [SerializeField] private TMP_Text _textIncrement;
 
         [SerializeField] private TrailRenderer _trailRenderer;
 
-        [SerializeField] private GameObject _explosionPrefab;
+        public int GetIndex() => _currentBall.Index;
 
-        public int GetIndex() => _config.Index;
-
-        private Ball _config;
+        private Ball _currentBall;
 
         public void Init(Ball ball, bool isPlayer)
         {
-            _config = ball;
-
-            var effect = Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
-
-            Destroy(effect, 0.4f);
+            _currentBall = ball;
 
             SetScale(ball);
 
@@ -65,8 +59,8 @@ namespace Logic.Player
 
         private void UpdateInfo()
         {
-            _spriteRenderer.sprite = _config.Sprite;
-            _textIncrement.text = _config.Increment.ToString();
+            _spriteRenderer.sprite = _currentBall.Sprite;
+            _textIncrement.text = _currentBall.Increment.ToString();
         }
     }
 }

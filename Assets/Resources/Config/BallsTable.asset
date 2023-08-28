@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _balls:
   - _name: 'Ball index: 0, increment: 2'
+    _index: 0
+    _increment: 2
     _sprite: {fileID: 21300000, guid: 6228b76081dbf85498293cc7af5c987f, type: 3}
     _trialColor:
       serializedVersion: 2
@@ -46,6 +48,8 @@ MonoBehaviour:
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
   - _name: 'Ball index: 1, increment: 4'
+    _index: 1
+    _increment: 4
     _sprite: {fileID: 21300000, guid: 000dc44a8e29278408e337c0646443c8, type: 3}
     _trialColor:
       serializedVersion: 2
@@ -78,6 +82,8 @@ MonoBehaviour:
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
   - _name: 'Ball index: 2, increment: 8'
+    _index: 2
+    _increment: 8
     _sprite: {fileID: 21300000, guid: 9548aab5e5dfef0418f6aa3af79d125a, type: 3}
     _trialColor:
       serializedVersion: 2
@@ -110,6 +116,8 @@ MonoBehaviour:
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
   - _name: 'Ball index: 3, increment: 16'
+    _index: 3
+    _increment: 16
     _sprite: {fileID: 21300000, guid: 2bc1424cbafee9c488377679f9f6effa, type: 3}
     _trialColor:
       serializedVersion: 2
@@ -142,6 +150,8 @@ MonoBehaviour:
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
   - _name: 'Ball index: 4, increment: 32'
+    _index: 4
+    _increment: 32
     _sprite: {fileID: 21300000, guid: f79862b466decc245bc972a0d68f8fd7, type: 3}
     _trialColor:
       serializedVersion: 2
@@ -174,6 +184,8 @@ MonoBehaviour:
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
   - _name: 'Ball index: 5, increment: 64'
+    _index: 5
+    _increment: 64
     _sprite: {fileID: 21300000, guid: 72f11336b6e74c24785f6d5fe51828a9, type: 3}
     _trialColor:
       serializedVersion: 2
@@ -206,6 +218,8 @@ MonoBehaviour:
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
   - _name: 'Ball index: 6, increment: 128'
+    _index: 6
+    _increment: 128
     _sprite: {fileID: 21300000, guid: 3161c99728d704d45a73ac681949cf54, type: 3}
     _trialColor:
       serializedVersion: 2
@@ -238,6 +252,8 @@ MonoBehaviour:
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
   - _name: 'Ball index: 7, increment: 256'
+    _index: 7
+    _increment: 256
     _sprite: {fileID: 21300000, guid: f71ee6c3902ba4e4582bdffb17336f5f, type: 3}
     _trialColor:
       serializedVersion: 2
@@ -270,6 +286,8 @@ MonoBehaviour:
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
   - _name: 'Ball index: 8, increment: 512'
+    _index: 8
+    _increment: 512
     _sprite: {fileID: 21300000, guid: f1c08939792b3214c92841affed29520, type: 3}
     _trialColor:
       serializedVersion: 2
@@ -302,6 +320,8 @@ MonoBehaviour:
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
   - _name: 'Ball index: 9, increment: 1024'
+    _index: 9
+    _increment: 1024
     _sprite: {fileID: 21300000, guid: caeaf785fb6406c43adf715f05059363, type: 3}
     _trialColor:
       serializedVersion: 2

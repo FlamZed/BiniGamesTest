@@ -17,7 +17,7 @@ namespace Infrastructure.States
         private readonly ILoadingCurtain _curtain;
         private readonly IGameFactory _gameFactory;
         private readonly IAssets _assetProvider;
-        private readonly IScoreService _scoreService;
+        private readonly IGameObserverService _gameObserverService;
         private readonly ISpawnPointService _spawnPoint;
 
         private BallsTable _config;
@@ -30,7 +30,7 @@ namespace Infrastructure.States
             _gameFactory = diContainer.Resolve<IGameFactory>();
             _sceneLoader = diContainer.Resolve<ISceneLoader>();
             _curtain = diContainer.Resolve<ILoadingCurtain>();
-            _scoreService = diContainer.Resolve<IScoreService>();
+            _gameObserverService = diContainer.Resolve<IGameObserverService>();
             _spawnPoint = diContainer.Resolve<ISpawnPointService>();
         }
 
@@ -64,7 +64,7 @@ namespace Infrastructure.States
 
         private void InitGameWorld()
         {
-            _scoreService.Init(_config);
+            _gameObserverService.Init(_config);
         }
 
         public void Exit()

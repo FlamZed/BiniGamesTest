@@ -1,6 +1,7 @@
 ﻿using System;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Logic.Player
 {
@@ -8,11 +9,11 @@ namespace Logic.Player
     {
         public event Action<MergeBehavior, MergeBehavior> OnDestroyed;
 
-        public PlayerConfigSetter GetConfig() => _playerConfigSetter;
+        public PlayerView GetModel() => playerView;
 
         [SerializeField] private MergeCollider _mergeCollider;
 
-        [SerializeField] private PlayerConfigSetter _playerConfigSetter;
+        [SerializeField] private PlayerView playerView;
         [SerializeField] private Rigidbody2D _rigidbody2D;
 
         [SerializeField] private float _distance = 0.2f;
@@ -43,18 +44,23 @@ namespace Logic.Player
                 {
                     OnDestroyed?.Invoke(this, _secondConfig);
 
-                    Destroy(_secondBall.gameObject);
-                    Destroy(gameObject);
-
                     _canMerge = false;
 
                     SpawnExplosionPrefab();
+
+                    Destroy(_secondBall.gameObject);
+                    Destroy(gameObject);
+
                 }
             }
         }
 
-        private void SpawnExplosionPrefab() =>
-            Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
+        private void SpawnExplosionPrefab()
+        {
+            var effect = Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
+
+            Destroy(effect, 0.5f);
+        }
 
         private void OnDestroy()
         {
@@ -66,7 +72,7 @@ namespace Logic.Player
         {
             if (anotherGO.TryGetComponent(out MergeBehavior config))
             {
-                if(_playerConfigSetter.GetIndex() != config.GetConfig().GetIndex())
+                if(playerView.GetIndex() != config.GetModel().GetIndex())
                     return;
 
                 _secondConfig = config;

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Utility
 {
@@ -15,7 +16,7 @@ namespace Utility
 
         public void GetRandomBall(int maxIndex, out Ball ball)
         {
-            var randomIndex = UnityEngine.Random.Range(0, maxIndex);
+            var randomIndex = Random.Range(0, maxIndex);
             ball = _balls[randomIndex];
         }
 
@@ -34,19 +35,7 @@ namespace Utility
         private void OnValidate()
         {
             for (int i = 0; i < _balls.Count; i++)
-            {
-                var increment = 2;
-
-                if (i > 0)
-                    increment = _balls[i - 1].Increment * 2;
-
-                _balls[i] = new Ball(
-                    $"Ball index: {i}, increment: {increment}",
-                    i,
-                    increment,
-                    _balls[i].Sprite,
-                    _balls[i].Gradient);
-            }
+                _balls[i].SetName(Math.Pow(2, 1 + i));
         }
 #endif
     }
@@ -56,8 +45,8 @@ namespace Utility
     {
         [SerializeField][HideInInspector] private string _name;
 
-        private int _index;
-        private int _increment;
+        [SerializeField] private int _index;
+        [SerializeField] private int _increment;
 
         [SerializeField] private Sprite _sprite;
         [SerializeField] private Gradient _trialColor;
@@ -67,13 +56,9 @@ namespace Utility
         public Sprite Sprite => _sprite;
         public Gradient Gradient => _trialColor;
 
-        public Ball(string name, int index ,int increment, Sprite sprite, Gradient trialColor)
+        public void SetName(double pow)
         {
-            _name = name;
-            _index = index;
-            _increment = increment;
-            _sprite = sprite;
-            _trialColor = trialColor;
+            _name = "Ball " + pow;
         }
     }
 }

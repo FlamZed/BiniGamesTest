@@ -4,7 +4,7 @@ using Utility;
 
 namespace Infrastructure.Services.Score
 {
-    public interface IScoreService
+    public interface IGameObserverService
     {
         event Action OnWin;
         event Action OnLose;

@@ -11,25 +11,24 @@ namespace Infrastructure.Factory
 {
     public class GameFactory : IGameFactory
     {
-        [Inject] private IScoreService _scoreService;
+        [Inject] private IGameObserverService _gameObserverService;
         [Inject] private IInputService _inputService;
 
-        private IAssets _assets;
+        private readonly IAssets _assets;
 
         public GameFactory(IAssets assetProvider) =>
             _assets = assetProvider;
-
-        public GameObject CreateHero(GameObject go) =>
-            InstantiateRegistered(AssetPath.HeroPath, go.transform.position);
-
-        public void CreateHero(Ball ball, Vector3 at) =>
-            CreateHero(ball, at, true);
 
         public void CreateHero(Ball ball, Vector3 at, bool isPlayer)
         {
             var player = _assets.Instantiate(AssetPath.HeroPath, at);
 
-            if (player.TryGetComponent(out PlayerConfigSetter configSetter))
+            RegisterObject(ball, isPlayer, player);
+        }
+
+        private void RegisterObject(Ball ball, bool isPlayer, GameObject player)
+        {
+            if (player.TryGetComponent(out PlayerView configSetter))
                 configSetter.Init(ball, isPlayer);
             else
                 throw new ArgumentException("PlayerConfigSetter not found");
@@ -45,21 +44,9 @@ namespace Infrastructure.Factory
                 throw new ArgumentException("PlayerConfigSetter not found");
 
             if (player.TryGetComponent(out MergeBehavior merge))
-                _scoreService.RegisterPlayer(merge);
+                _gameObserverService.RegisterPlayer(merge);
             else
                 throw new ArgumentException("PlayerConfigSetter not found");
-        }
-
-        private GameObject InstantiateRegistered(string prefabPath)
-        {
-            GameObject gameObject = _assets.Instantiate(prefabPath);
-            return gameObject;
-        }
-
-        private GameObject InstantiateRegistered(string prefabPath, Vector3 at)
-        {
-            GameObject gameObject = _assets.Instantiate(prefabPath, at);
-            return gameObject;
         }
     }
 }

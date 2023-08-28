@@ -1,6 +1,7 @@
 using System.Collections;
 using Infrastructure.Factory;
 using Infrastructure.Services.Audio;
+using Infrastructure.Services.Audio.Type;
 using Infrastructure.Services.Input;
 using Infrastructure.Services.Level;
 using Infrastructure.Services.Score;
@@ -14,7 +15,7 @@ namespace Infrastructure.States
     {
         private readonly GameStateMachine _gameStateMachine;
 
-        private readonly IScoreService _scoreService;
+        private readonly IGameObserverService _gameObserverService;
         private readonly IInputService _inputService;
         private readonly IGameFactory _gameFactory;
         private readonly ICoroutineRunner _coroutineRunner;
@@ -30,7 +31,7 @@ namespace Infrastructure.States
         {
             _gameStateMachine = gameStateMachine;
 
-            _scoreService = diContainer.Resolve<IScoreService>();
+            _gameObserverService = diContainer.Resolve<IGameObserverService>();
             _inputService = diContainer.Resolve<IInputService>();
             _gameFactory = diContainer.Resolve<IGameFactory>();
             _coroutineRunner = diContainer.Resolve<ICoroutineRunner>();
@@ -43,8 +44,8 @@ namespace Infrastructure.States
         {
             _inputService.OnRelease += OnRelease;
 
-            _scoreService.OnWin += ToWinSate;
-            _scoreService.OnLose += ToLoseState;
+            _gameObserverService.OnWin += ToWinSate;
+            _gameObserverService.OnLose += ToLoseState;
 
             _gameResetService.OnRestart += ToRestart;
 
@@ -60,8 +61,8 @@ namespace Infrastructure.States
         {
             _inputService.OnRelease -= OnRelease;
 
-            _scoreService.OnWin -= ToWinSate;
-            _scoreService.OnLose -= ToLoseState;
+            _gameObserverService.OnWin -= ToWinSate;
+            _gameObserverService.OnLose -= ToLoseState;
 
             _gameResetService.OnRestart -= ToRestart;
         }
@@ -88,7 +89,7 @@ namespace Infrastructure.States
 
         private IEnumerator WaitDelay()
         {
-            _scoreService.GetRecommendedBall(out Ball ball);
+            _gameObserverService.GetRecommendedBall(out Ball ball);
 
             yield return new WaitForSeconds(0.5f);
 

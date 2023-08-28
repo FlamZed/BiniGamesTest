@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Infrastructure.Factory;
 using Infrastructure.Services.Audio;
+using Infrastructure.Services.Audio.Type;
 using Logic.Player;
 using UnityEngine;
 using Utility;
@@ -10,7 +11,7 @@ using Zenject;
 
 namespace Infrastructure.Services.Score
 {
-    public class ScoreService : IScoreService
+    public class GameObserverService : IGameObserverService
     {
         public event Action OnWin;
         public event Action OnLose;
@@ -20,13 +21,13 @@ namespace Infrastructure.Services.Score
 
         private List<MergeBehavior> _ballsMergeBehaviors = new();
 
-        private BallsTable _chasConfig;
+        private BallsTable _cacheConfig;
 
         private bool _finalized = false;
 
         public void Init(BallsTable config)
         {
-            _chasConfig = config;
+            _cacheConfig = config;
 
             _finalized = false;
         }
@@ -61,9 +62,9 @@ namespace Infrastructure.Services.Score
         public void GetRecommendedBall(out Ball ball)
         {
             if (_ballsMergeBehaviors.Count < 3)
-                _chasConfig.GetRandomBall(3, out ball);
+                _cacheConfig.GetRandomBall(3, out ball);
             else
-                _chasConfig.GetRandomBall(_ballsMergeBehaviors.Max(x => x.GetConfig().GetIndex()), out ball);
+                _cacheConfig.GetRandomBall(_ballsMergeBehaviors.Max(x => x.GetModel().GetIndex()), out ball);
         }
 
         private void RemoveBall(MergeBehavior mergeBehavior)
@@ -77,16 +78,14 @@ namespace Infrastructure.Services.Score
         {
             _audioService.PlayOneShot(AudioClipShot.Kick);
             
-            var info = configSetter.GetConfig();
+            var info = configSetter.GetModel();
 
             var index = 1 + info.GetIndex();
 
-            Debug.LogWarning(index);
-
-            if (_chasConfig.IsMaxValue(index))
+            if (_cacheConfig.IsMaxValue(index))
                 _finalized = true;
 
-            _gameFactory.CreateHero(_chasConfig.GetIncrementedBall(index), at: position, isPlayer: false);
+            _gameFactory.CreateHero(_cacheConfig.GetIncrementedBall(index), at: position, isPlayer: false);
 
             if (_finalized)
                 FinisLevel(configSetter);

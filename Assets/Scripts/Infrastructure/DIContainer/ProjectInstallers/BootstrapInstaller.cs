@@ -37,7 +37,7 @@ namespace Infrastructure.DIContainer.ProjectInstallers
 
             Container.BindService<IInputService, InputService>(_inputService);
 
-            Container.BindService<IScoreService, ScoreService>();
+            Container.BindService<IGameObserverService, GameObserverService>();
 
             Container.BindService<ISpawnPointService, SpawnPointService>();
             Container.BindService<IGameResetService, GameResetService>();

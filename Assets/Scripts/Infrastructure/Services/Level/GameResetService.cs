@@ -1,5 +1,6 @@
 ﻿using System;
 using Infrastructure.Services.Audio;
+using Infrastructure.Services.Audio.Type;
 using Zenject;
 
 namespace Infrastructure.Services.Level
@@ -14,11 +15,5 @@ namespace Infrastructure.Services.Level
             _audioService.PlayOneShot(AudioClipShot.Kick);
             OnRestart?.Invoke();
         }
-    }
-
-    public interface IGameResetService
-    {
-        event Action OnRestart;
-        void RestartLevel();
     }
 }

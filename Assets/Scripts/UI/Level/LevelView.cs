@@ -15,21 +15,21 @@ namespace UI.Level
         [SerializeField] private GameObject _losingPopup;
 
         [Inject] private ISpawnPointService _spawnPointService;
-        [Inject] private IScoreService _scoreService;
+        [Inject] private IGameObserverService _gameObserverService;
         [Inject] private IGameResetService _gameResetService;
 
         private void Start()
         {
             _spawnPointService.AllowSpawn(_spawnPoint.position);
 
-            _scoreService.OnWin += ShowCongratulationPopup;
-            _scoreService.OnLose += ShowLosingPopup;
+            _gameObserverService.OnWin += ShowCongratulationPopup;
+            _gameObserverService.OnLose += ShowLosingPopup;
         }
 
         private void OnDestroy()
         {
-            _scoreService.OnWin -= ShowCongratulationPopup;
-            _scoreService.OnLose -= ShowLosingPopup;
+            _gameObserverService.OnWin -= ShowCongratulationPopup;
+            _gameObserverService.OnLose -= ShowLosingPopup;
         }
 
         public void Restart() =>

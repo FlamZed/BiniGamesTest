@@ -181,6 +181,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0547a8cc5b88fe4687dc7f1de67d435, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _force: 30
+  _maxDirectionMagnitude: 0.7
 --- !u!114 &1179811082010870544
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -194,8 +196,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mergeCollider: {fileID: 7288941611907945488}
-  _playerConfigSetter: {fileID: 4511641718888457573}
-  _rigidbody2D: {fileID: 0}
+  playerView: {fileID: 4511641718888457573}
+  _rigidbody2D: {fileID: 7033546585960288019}
   _distance: 0.4
   _mergeSpeed: 0.3
   _explosionPrefab: {fileID: 5846832480947890362, guid: e8b5ea0d216859d4c8d5678c72a3deab, type: 3}
@@ -214,7 +216,6 @@ MonoBehaviour:
   _spriteRenderer: {fileID: 4377525841605185329}
   _textIncrement: {fileID: 7801435860639787239}
   _trailRenderer: {fileID: 8093139622331048339}
-  _explosionPrefab: {fileID: 7241034052585141942, guid: cabe632922c0c6b4da79d70b27616706, type: 3}
 --- !u!1 &1908250500327956294
 GameObject:
   m_ObjectHideFlags: 0
@@ -286,9 +287,9 @@ TrailRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 1845859489
+  m_SortingLayer: 1
+  m_SortingOrder: 5
   m_Time: 1
   m_PreviewTimeScale: 1
   m_Parameters:
