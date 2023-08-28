@@ -44,6 +44,8 @@ Bini Games Test
 
 ![image](https://github.com/FlamZed/BiniGamesTest/assets/53183455/ccc60ada-5747-4356-a9f3-cea6566f3335)
 
+[![Watch the video](https://img.youtube.com/vi/twAot93CW0s/maxresdefault.jpg)](https://youtu.be/twAot93CW0s)
+
 # Посилання на додаток
 
 https://drive.google.com/file/d/1nULRA6Lzln1evV49BTViW_s-OpoMXnvO/view?usp=sharing
